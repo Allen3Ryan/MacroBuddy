@@ -28,6 +28,7 @@ public class GUI {
         Integer gridY = 50;
         for(int i = 0; i < 9; i++) {
             MacroButton macroButton = new MacroButton();
+            macroButton.button.setText("Macro "+String.valueOf(i+1));
             macroButton.button.setBounds(gridX,gridY, 123, 60);
             panel.add(macroButton.button);
 
