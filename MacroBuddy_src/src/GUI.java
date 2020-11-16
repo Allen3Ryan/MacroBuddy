@@ -13,9 +13,11 @@ public class GUI {
         Record recordButton = new Record();
         Execute executeButton = new Execute();
         Terminal terminal = new Terminal();
+        MacroGrid macroGrid = new MacroGrid();
 
 
         JPanel panel = new JPanel();
+        macroGrid.panel = panel;
         panel.setLayout(null);
         recordButton.button.setBounds(460,462,430,100);
         panel.add(recordButton.button);
@@ -23,20 +25,7 @@ public class GUI {
         executeButton.button.setBounds(460,312,430,100);
         panel.add(executeButton.button);
 
-
-        Integer gridX = 460;
-        Integer gridY = 50;
-        for(int i = 0; i < 9; i++) {
-            MacroButton macroButton = new MacroButton();
-            macroButton.button.setText("Macro "+String.valueOf(i+1));
-            macroButton.button.setBounds(gridX,gridY, 123, 60);
-            panel.add(macroButton.button);
-
-            gridX += 150;
-            if(i == 2 || i == 5) gridY += 80;
-            if(i == 2 || i == 5) gridX = 460;
-
-        }
+        macroGrid.populateMacroGrid(panel);
 
         terminal.terminalWindow.setBounds(10,10,430,550);
         terminal.terminalWindow.setAlignmentY(0);
@@ -55,4 +44,6 @@ public class GUI {
     public static void main(String[] args) {
         new GUI();
     }
+
+
 }
