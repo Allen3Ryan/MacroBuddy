@@ -25,6 +25,11 @@ public class MacroButton {
         );
     }
 
+    public void Init_name(String mName) {
+    name = mName;
+    }
+
+
     private void fetchMacro(String location) {
 
     }

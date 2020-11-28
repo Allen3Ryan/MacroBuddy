@@ -7,18 +7,26 @@ import java.io.File;
 public class Record {
 
     JButton button;
-    Boolean isRecording;
+    Boolean isRecording = false;
     File input;
+    String bName = "Start Recording";
 
     public Record() {
 
-        button = new JButton("Record");
+        button = new JButton(bName);
         button.setPreferredSize(new Dimension(200,50));
         button.addActionListener(
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        startRecording();
+                        if(isRecording == false){
+                            button.setText("Stop Recording");
+                            startRecording();
+                        }
+                        else {
+                            button.setText("Start Recording");
+                            finishRecording();
+                        }
                     }
                 }
         );
@@ -29,9 +37,10 @@ public class Record {
     }
 
     public void finishRecording() {
-       getInput();
-       storeInput();
-       processInput();
+        isRecording = false;
+        getInput();
+        storeInput();
+        processInput();
     }
 
     private void getInput() {
