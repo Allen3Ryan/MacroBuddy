@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MacroGrid {
@@ -56,7 +59,13 @@ public class MacroGrid {
                         if (returnVal == JFileChooser.APPROVE_OPTION) {
                             System.out.println("You opened: " + chooser.getSelectedFile().getName());
                             lName = chooser.getSelectedFile().getName();
-                            executeButton.mLoaded(lName);
+                            BufferedReader reader;
+                            try {
+                                reader = new BufferedReader(new FileReader(chooser.getSelectedFile()));
+                                executeButton.mLoaded(lName, reader);
+                            } catch (IOException h){
+                                h.printStackTrace();
+                            }
                         }
                     }
                 }
