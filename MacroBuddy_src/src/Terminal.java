@@ -55,6 +55,11 @@ public class Terminal{
         }
     }
 
+    public void print_line(String line){
+        terminalWindow.append("\n");
+        terminalWindow.append(line);
+    }
+
 
 
 }

@@ -15,8 +15,8 @@ public class GUI {
         //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         Record recordButton = new Record();
-        Execute executeButton = new Execute();
         Terminal terminal = new Terminal();
+        Execute executeButton = new Execute(terminal);
         MacroGrid macroGrid = new MacroGrid(executeButton);
 
         JPanel panel = new JPanel();
