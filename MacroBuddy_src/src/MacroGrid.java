@@ -16,11 +16,11 @@ public class MacroGrid {
     String lName = "";
 
     MacroGrid(Execute executeButton) {
-        macroButtons = new MacroButton[6];
+        macroButtons = new MacroButton[9];
         pageNumber = 0;
         //fileChoose fDirect = new fileChoose();
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 9; i++) {
             macroButtons[i] = new MacroButton();
         }
 
@@ -83,39 +83,39 @@ public class MacroGrid {
     }
 
     public void populateMacroGrid(JPanel panel) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Integer gridX = screenSize.width / 2 + 20; // Formerly 460
-        Integer gridY = screenSize.height / 2 - 50; // Formerly 50
+        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Integer gridX = 460;
+        Integer gridY = 50;
 
-        for (int i = 0; i <= 9; i++) {
-            if (i < 6) {
-                macroButtons[i].button.setText("Macro " + String.valueOf(6 * pageNumber + i + 1));
+        for (int i = 0; i <= 12; i++) {
+            if (i < 9) {
+                macroButtons[i].button.setText("Slot " + String.valueOf(9 * pageNumber + i + 1));
                 macroButtons[i].button.setBounds(gridX, gridY, 120, 60);
                 panel.add(macroButtons[i].button);
             }
 
-            if (i == 6) {
+            if (i == 9) {
                 leftPageButton.setText("<");
                 leftPageButton.setBounds(gridX, gridY, 120, 60);
                 panel.add(leftPageButton);
             }
 
-            if (i == 7) {
+            if (i == 10) {
                 loadMacroButton.setText("Load Macro");
                 loadMacroButton.setBounds(gridX, gridY, 120, 60);
                 panel.add(loadMacroButton);
             }
 
-            if (i == 8) {
+            if (i == 11) {
                 rightPageButton.setText(">");
                 rightPageButton.setBounds(gridX, gridY, 120, 60);
                 panel.add(rightPageButton);
             }
 
-            gridX += 140; // Formerly 150
-            if (i == 2 || i == 5) {
+            gridX += 150;
+            if (i == 2 || i == 5 || i == 8) {
                 gridY += 80;
-                gridX = screenSize.width / 2 + 20; // Formerly 460
+                gridX = 460;
             }
         }
     }
