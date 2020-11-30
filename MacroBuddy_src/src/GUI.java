@@ -14,10 +14,10 @@ public class GUI {
         JFrame frame = new JFrame();
         //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        Record recordButton = new Record();
         Terminal terminal = new Terminal();
         Execute executeButton = new Execute(terminal);
         MacroGrid macroGrid = new MacroGrid(executeButton);
+        Record recordButton = new Record(terminal.terminalWindow, frame);
 
         JPanel panel = new JPanel();
         macroGrid.panel = panel;

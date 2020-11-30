@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Record {
 
@@ -10,9 +13,14 @@ public class Record {
     Boolean isRecording = false;
     File input;
     String bName = "Start Recording";
+    String fileContents = "";
+    JTextArea textArea;
+    JFrame jframe;
 
-    public Record() {
+    public Record(JTextArea _textArea, JFrame _jframe) {
 
+        jframe = _jframe;
+        textArea = _textArea;
         button = new JButton(bName);
         button.setPreferredSize(new Dimension(200,50));
         button.addActionListener(
@@ -25,7 +33,8 @@ public class Record {
                         }
                         else {
                             button.setText("Start Recording");
-                            finishRecording();
+
+                            finishRecording(textArea);
                         }
                     }
                 }
@@ -36,19 +45,16 @@ public class Record {
         isRecording = true;
     }
 
-    public void finishRecording() {
+    public void finishRecording(JTextArea textArea) {
         isRecording = false;
-        getInput();
-        storeInput();
+        getInput(textArea);
+        NamePrompt namePrompt = new NamePrompt(fileContents);
         processInput();
     }
 
-    private void getInput() {
+    private void getInput(JTextArea textArea) {
         // GET THAT INPUT
-    }
-
-    private void storeInput() {
-        //store that input
+        fileContents = textArea.getText();
     }
 
     private void processInput() {
