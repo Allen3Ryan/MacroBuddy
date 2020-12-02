@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.FileWriter;
 
 public class NamePrompt {
 
@@ -28,7 +29,7 @@ public class NamePrompt {
         label.setBounds(50, 20, 200, 50);
         nameField.setBounds(50,100,200, 20);
         submitButton.setText("Save");
-        submitButton.setBounds(50, 150, 200, 50);
+        submitButton.setBounds(50, 150, 200, 25);
 
         panel.add(label);
         panel.add(nameField);
@@ -38,7 +39,7 @@ public class NamePrompt {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setTitle("Specify Macro Name");
         frame.pack();
-        frame.setSize(300, 300);
+        frame.setSize(300, 250);
         frame.setResizable(false);
         frame.setVisible(true);
 
@@ -64,8 +65,9 @@ public class NamePrompt {
             theDir.mkdirs();
         }
 
-        File file = new File("manifest/manifest.txt");
-        if (!file.exists()) {
+        /*File file = new File("manifest/manifest.txt");
+        boolean exists = file.exists();
+        if (exists == false) {
             try {
                 file.createNewFile();
             }
@@ -75,11 +77,21 @@ public class NamePrompt {
         }
 
         try (PrintWriter out = new PrintWriter("manifest/manifest.txt")) {
-            out.println(name + " - " + System.currentTimeMillis());
+            //out.println(name + " - " + System.currentTimeMillis());
+            out.println(name + "\n");
         }
         catch (FileNotFoundException e1) {
             System.out.println(e1);
+        }*/
+        File file = new File("manifest/manifest.txt");
+        try {
+            FileWriter fr = new FileWriter(file, true);
+            fr.write(name + "\n");
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
 
     public void storeInput(String text, String name) {
