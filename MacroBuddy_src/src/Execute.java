@@ -32,10 +32,13 @@ public class Execute {
     }
 
     public void mLoaded(String mName, BufferedReader n_reader) {
-    bName = mName + " ready to execute";
-    this.button.setText(bName);
-    reader = n_reader;
-    canExecute = true;
+        String txt = ".txt";
+        String blank = "";
+        mName = mName.replaceFirst(txt, blank);
+        bName = mName + " ready to execute";
+        this.button.setText(bName);
+        reader = n_reader;
+        canExecute = true;
     }
 
     public void executeMacro(Terminal terminal) {

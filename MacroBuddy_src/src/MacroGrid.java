@@ -18,13 +18,14 @@ public class MacroGrid {
     JPanel panel;
     String lName = "";
 
-    MacroGrid(Execute executeButton) {
+    MacroGrid(Execute executeButton, Terminal terminal) {
         macroButtons = new MacroButton[9];
         pageNumber = 0;
+        String fName = "null";
         //fileChoose fDirect = new fileChoose();
 
         for (int i = 0; i < 9; i++) {
-            macroButtons[i] = new MacroButton();
+            macroButtons[i] = new MacroButton(terminal);
         }
 
         leftPageButton = new JButton("<");
@@ -52,7 +53,7 @@ public class MacroGrid {
                         //fileFrame.add(fDirect.chooser);
                         //fileFrame.pack();
                         //fileFrame.setVisible(true);
-                        JFileChooser chooser = new JFileChooser();
+                        JFileChooser chooser = new JFileChooser("Macros/");
                         FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Documents", "txt");
                         chooser.setFileFilter(filter);
                         int returnVal = chooser.showOpenDialog(null);
@@ -95,10 +96,18 @@ public class MacroGrid {
         //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Integer gridX = 460;
         Integer gridY = 50;
+        int bNum;
 
         for (int i = 0; i <= 12; i++) {
             if (i < 9) {
-                macroButtons[i].button.setText("Slot " + String.valueOf(9 * pageNumber + i + 1));
+                bNum = 9 * pageNumber + i + 1;
+                macroButtons[i].setNum(bNum);
+                if(macroButtons[i].location == "no_file_loc") {
+                    macroButtons[i].button.setText("Slot " + String.valueOf(bNum));
+                }
+                else{
+                    macroButtons[i].button.setText(macroButtons[i].location);
+                }
                 macroButtons[i].button.setBounds(gridX, gridY, 120, 60);
                 panel.add(macroButtons[i].button);
             }

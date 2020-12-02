@@ -14,6 +14,8 @@ public class Record {
     File input;
     String bName = "Start Recording";
     String fileContents = "";
+    String areaSaver = "";
+    String blank = "";
     JTextArea textArea;
     JFrame jframe;
 
@@ -43,6 +45,8 @@ public class Record {
 
     public void startRecording() {
         isRecording = true;
+        textArea.append("\n");
+        areaSaver = textArea.getText();
     }
 
     public void finishRecording(JTextArea textArea) {
@@ -55,6 +59,7 @@ public class Record {
     private void getInput(JTextArea textArea) {
         // GET THAT INPUT
         fileContents = textArea.getText();
+        fileContents = fileContents.replaceFirst(areaSaver, blank);
     }
 
     private void processInput() {
