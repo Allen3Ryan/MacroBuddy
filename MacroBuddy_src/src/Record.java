@@ -18,9 +18,11 @@ public class Record {
     String blank = "";
     JTextArea textArea;
     JFrame jframe;
+    MacroGrid macroGrid;
 
-    public Record(JTextArea _textArea, JFrame _jframe) {
+    public Record(JTextArea _textArea, JFrame _jframe, MacroGrid _macroGrid) {
 
+        macroGrid = _macroGrid;
         jframe = _jframe;
         textArea = _textArea;
         button = new JButton(bName);
@@ -52,7 +54,7 @@ public class Record {
     public void finishRecording(JTextArea textArea) {
         isRecording = false;
         getInput(textArea);
-        NamePrompt namePrompt = new NamePrompt(fileContents);
+        NamePrompt namePrompt = new NamePrompt(fileContents, macroGrid, macroGrid.panel);
         processInput();
     }
 

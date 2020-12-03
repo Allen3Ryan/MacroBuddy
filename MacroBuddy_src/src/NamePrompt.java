@@ -15,8 +15,10 @@ public class NamePrompt {
     JButton submitButton;
     String name = "";
     String text = "";
+    MacroGrid macroGrid;
+    JPanel mainPanel;
 
-    public NamePrompt(String fileContents) {
+    public NamePrompt(String fileContents, MacroGrid _macroGrid, JPanel _mainPanel) {
 
         nameField = new JTextField();
         label = new JLabel();
@@ -24,6 +26,9 @@ public class NamePrompt {
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
         panel.setLayout(null);
+        macroGrid = _macroGrid;
+        mainPanel = _mainPanel;
+
 
         label.setText("Choose a name for your macro");
         label.setBounds(50, 20, 200, 50);
@@ -51,6 +56,7 @@ public class NamePrompt {
                             name = nameField.getText();
                             storeInput(fileContents, name);
                             populateManifestFile();
+                            macroGrid.populateMacroGrid(mainPanel);
                             frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
                         }
                     }

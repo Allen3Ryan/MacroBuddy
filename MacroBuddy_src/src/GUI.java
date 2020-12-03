@@ -17,7 +17,7 @@ public class GUI {
         Terminal terminal = new Terminal();
         Execute executeButton = new Execute(terminal);
         MacroGrid macroGrid = new MacroGrid(executeButton, terminal);
-        Record recordButton = new Record(terminal.terminalWindow, frame);
+        Record recordButton = new Record(terminal.terminalWindow, frame, macroGrid);
 
         JPanel panel = new JPanel();
         macroGrid.panel = panel;
