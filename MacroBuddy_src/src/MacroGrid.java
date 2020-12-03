@@ -25,7 +25,7 @@ public class MacroGrid {
         //fileChoose fDirect = new fileChoose();
 
         for (int i = 0; i < 9; i++) {
-            macroButtons[i] = new MacroButton(terminal);
+            macroButtons[i] = new MacroButton(terminal, executeButton);
         }
 
         leftPageButton = new JButton("<");

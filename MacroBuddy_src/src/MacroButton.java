@@ -17,15 +17,19 @@ public class MacroButton {
     String name;
     String dateCreated;
     String lName;
+    Execute executeButton;
+    BufferedReader reader;
 
-    public MacroButton(Terminal terminal) {
+    public MacroButton(Terminal terminal, Execute _executeButton) {
         button = new JButton(name);
+        executeButton = _executeButton;
         button.setPreferredSize(new Dimension(50,50));
         button.addActionListener(
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         fetchMacro(location, terminal);
+                        executeButton.mLoaded(name, reader);
                     }
                 }
         );
@@ -58,8 +62,8 @@ public class MacroButton {
     }
     private void fetchMacro(String location, Terminal terminal) {
     if(location != "no_file_loc") {
-    lName = ("macros/" + location + ".txt");
-        BufferedReader reader;
+        name = location;
+        lName = ("macros/" + location + ".txt");
         try {
             reader = new BufferedReader(new FileReader(lName));
             String line = reader.readLine();
@@ -69,7 +73,10 @@ public class MacroButton {
                 // read next line
                 line = reader.readLine();
             }
+
             reader.close();
+            File file = new File(lName);
+            reader = new BufferedReader(new FileReader(file));
             } catch (IOException h){
             h.printStackTrace();
             }
