@@ -49,7 +49,8 @@ public class Execute {
                 terminal.print_line(line);
                 //run process
                 try {
-                    Process process = Runtime.getRuntime().exec(line);
+                    Process process = Runtime.getRuntime().exec("cmd /c " + line); // windows version
+					//Process process = Runtime.getRuntime().exec(line); mac version
                     printResults(process, terminal);
                 }
                 catch (IOException e) {
